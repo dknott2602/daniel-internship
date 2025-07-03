@@ -3,21 +3,32 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
 const HotCollections = () => {
+const { id } = useParams();
 const [users, setUsers] = useState ([])
+const [loading, setLoading] = useState(true);
 const [data, setData] = useState ([])
+const [error, setError] = useState(null); 
 
-async function fetchUsers(){
-  const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
-  console.log(data)
-}
-
+const fetchUsers = async () => {
+  try {
+    const { data } = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections');
+    setUsers(data); 
+    console.log(data); 
+  } catch (error) {
+    setError(error); 
+    console.error('Error fetching users:', error); 
+  } finally {
+    setLoading(false); 
+  }
+};
 
 useEffect(() => {
-    fetchUsers()
-    
-  }, [])
-    
-  
+  fetchUsers(); 
+}, []);
+
+if (loading) return <div>Loading...</div>; 
+if (error) return <div>Error: {error.message}</div>; 
+ 
 
 
   return (
@@ -35,7 +46,7 @@ useEffect(() => {
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
-                    <img src={item.image} className="lazy img-fluid" alt="" /> 
+                    <img src={item.nftImage} className="lazy img-fluid" alt="" /> 
                   </Link>
                 </div>
                 <div className="nft_coll_pp">
