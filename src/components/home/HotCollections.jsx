@@ -28,11 +28,6 @@ const HotCollections = () => {
   };
 
   useEffect(() => {
-    const image = new Image
-  image.src = item.nftImage
-  image.onload = () => {
-    setImg(image)
-  }
     fetchUsers();
   }, []);
 
