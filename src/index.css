@@ -12,3 +12,20 @@
 @import "./css/styles/coloring.css";
 
 
+.slick-track {
+    display: flex;
+    gap: 10px;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: black !important
+
+}
+
+/* SMALL PHONES, TABLETS, LARGE SMARTPHONES */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
