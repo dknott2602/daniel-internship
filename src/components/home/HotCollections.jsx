@@ -112,7 +112,7 @@ const HotCollections = () => {
 
                           src={item.authorImage}
 
-                          alt=${item.title} author}
+                          alt={`${item.title} author`}
 
                         />
 
